@@ -19,7 +19,7 @@ const ScrollProgress = (_props: ScrollProgressProps) => {
     <div className="fixed top-0 left-0 right-0 z-[60] h-1 bg-transparent">
       <div
         ref={ref}
-        className="h-full bg-accent transition-[width] duration-100"
+        className="h-full bg-gradient-to-r from-primary via-accent to-primary transition-[width] duration-100 shadow-lg shadow-accent/50"
         style={{ width: "0%" }}
       />
     </div>

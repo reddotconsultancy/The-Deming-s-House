@@ -1,0 +1,33 @@
+{
+  "name": "The Deming's House - Healthcare Education",
+  "short_name": "Deming's House",
+  "description": "Professional healthcare education programs for non-clinical professionals. ISO certified training institution.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0B5D7E",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/1_page-0001-Photoroom.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/1_page-0001-Photoroom.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education",
+    "healthcare",
+    "training"
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

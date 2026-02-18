@@ -1,117 +1,169 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
   { label: "Why Choose Us", href: "#why-choose-us" },
   { label: "Course", href: "#course" },
-  { label: "FAQ", href: "#faq" },
+  { label: "FAQ's", href: "#faq" },
 ];
 
-const Navbar = () => {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
+    let ticking = false;
+    
     const onScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 10);
 
-      const sections = navLinks.map((l) => l.href.slice(1));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top <= 120) {
-          setActiveSection(sections[i]);
-          break;
-        }
+          const sections = navLinks.map((l) => l.href.slice(1));
+          let current = "home";
+          const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sections[i]);
+            if (!el) continue;
+            const rect = el.getBoundingClientRect();
+            const elementTop = rect.top + window.scrollY;
+            
+            if (scrollPosition >= elementTop) {
+              current = sections[i];
+              break;
+            }
+          }
+          
+          setActiveSection(current);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
-    const el = document.getElementById(href.slice(1));
-    el?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(href)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
+
+  const navButtons = useMemo(() => {
+    return navLinks.map((link) => {
+      const active = activeSection === link.href.slice(1);
+      return (
+        <motion.button
+          key={link.href}
+          onClick={() => handleClick(link.href)}
+          className={`relative px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
+            active
+              ? "text-white"
+              : "text-foreground/70 hover:text-primary"
+          }`}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {active && (
+            <motion.div
+              layoutId="nav-bg"
+              className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full -z-10 shadow-md"
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            />
+          )}
+          {link.label}
+        </motion.button>
+      );
+    });
+  }, [activeSection]);
 
   return (
     <motion.nav
-      initial={{ y: -80 }}
+      initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-card/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        scrolled
+          ? "bg-white/95 backdrop-blur-xl shadow-lg"
+          : "bg-white/80 backdrop-blur-md"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
-        <a href="#home" className="font-heading text-xl md:text-2xl font-bold text-primary">
-          The Deming's House
+      <div className="container mx-auto flex items-center justify-between py-0.5 px-4 lg:px-8">
+
+        {/* Logo */}
+        <a href="#home" className="flex items-center justify-center group">
+          <motion.img 
+            src="/1_page-0001-Photoroom.png" 
+            alt="The Deming's House" 
+            className="h-16 w-auto md:h-18 lg:h-20 object-contain transition-transform duration-300"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            whileHover={{ scale: 1.05, rotate: 1 }}
+            whileTap={{ scale: 0.95 }}
+          />
         </a>
 
         {/* Desktop */}
-        <ul className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <button
-                onClick={() => handleClick(link.href)}
-                className={`font-body text-sm font-medium transition-colors duration-200 relative pb-1 ${
-                  activeSection === link.href.slice(1)
-                    ? "text-accent"
-                    : "text-foreground/80 hover:text-accent"
-                }`}
-              >
-                {link.label}
-                {activeSection === link.href.slice(1) && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full"
-                  />
-                )}
-              </button>
-            </li>
-          ))}
+        <ul className="hidden lg:flex items-center gap-2">
+          {navButtons}
         </ul>
 
-        {/* Mobile toggle */}
-        <button
-          className="lg:hidden text-foreground"
+        {/* Mobile */}
+        <motion.button
+          className="lg:hidden p-2 rounded-lg hover:bg-secondary/50 transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {mobileOpen ? <X className="h-6 w-6 text-foreground" /> : <Menu className="h-6 w-6 text-foreground" />}
+        </motion.button>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-card/95 backdrop-blur-md border-t border-border"
-        >
-          <ul className="flex flex-col py-4 px-6 gap-3">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <button
-                  onClick={() => handleClick(link.href)}
-                  className={`font-body text-base w-full text-left py-2 ${
-                    activeSection === link.href.slice(1) ? "text-accent font-semibold" : "text-foreground/80"
-                  }`}
-                >
-                  {link.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="lg:hidden bg-white border-t border-border shadow-xl overflow-hidden"
+          >
+            <ul className="flex flex-col p-6 gap-3">
+              {navLinks.map((link, index) => {
+                const active = activeSection === link.href.slice(1);
+                return (
+                  <motion.button
+                    key={link.href}
+                    onClick={() => handleClick(link.href)}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`py-3 px-5 rounded-lg font-semibold text-left transition-all duration-200 ${
+                      active
+                        ? "bg-gradient-to-r from-primary to-accent text-white shadow-md"
+                        : "bg-secondary/50 text-foreground hover:bg-secondary hover:shadow-sm"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.button>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
-};
-
-export default Navbar;
+}

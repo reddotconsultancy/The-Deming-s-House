@@ -35,15 +35,23 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-background" ref={ref}>
-      <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+    <section id="faq" className="py-20 md:py-28 bg-gradient-to-b from-background to-secondary/20" ref={ref}>
+      <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <motion.span 
+            className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent font-semibold text-sm mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            FAQ's
+          </motion.span>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Frequently Asked Questions
           </h2>
           <p className="font-body text-muted-foreground text-base md:text-lg">
@@ -51,28 +59,30 @@ const FAQSection = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="border border-border/50 rounded-xl overflow-hidden bg-card"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="border border-border/50 rounded-2xl overflow-hidden bg-card hover:border-accent/30 transition-all duration-300 shadow-sm hover:shadow-lg"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-5 md:p-6 text-left"
+                className="w-full flex items-center justify-between p-6 md:p-7 text-left group"
                 aria-expanded={openIndex === i}
               >
-                <span className="font-heading text-base md:text-lg font-medium text-foreground pr-4">
+                <span className="font-heading text-base md:text-lg font-semibold text-foreground pr-6 group-hover:text-accent transition-colors duration-300">
                   {faq.question}
                 </span>
-                <ChevronDown
-                  className={`w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 ${
-                    openIndex === i ? "rotate-180" : ""
-                  }`}
-                />
+                <motion.div
+                  animate={{ rotate: openIndex === i ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 group-hover:bg-accent/20 flex items-center justify-center transition-colors"
+                >
+                  <ChevronDown className="w-5 h-5 text-accent" strokeWidth={2.5} />
+                </motion.div>
               </button>
               <motion.div
                 initial={false}
@@ -83,8 +93,8 @@ const FAQSection = () => {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="overflow-hidden"
               >
-                <div className="px-5 md:px-6 pb-5 md:pb-6">
-                  <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed">
+                <div className="px-6 md:px-7 pb-6 md:pb-7 border-t border-border/30">
+                  <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed pt-4">
                     {faq.answer}
                   </p>
                 </div>

@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
+import ScrollToTop from "@/components/ScrollToTop";
 import HeroSlider from "@/components/HeroSlider";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -11,8 +12,9 @@ import Certifications from "@/components/Certifications";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <ScrollProgress />
       <Navbar />
       <main>
@@ -26,6 +28,7 @@ const Index = () => {
         <Certifications />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
