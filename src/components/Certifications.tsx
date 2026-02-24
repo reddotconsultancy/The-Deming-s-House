@@ -1,74 +1,85 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award } from "lucide-react";
 
-const certifications = [
-  "ISO 9001",
-  "IACET",
-  "ANSI",
-  "NBHEC",
-  "AHLA",
-  "HCCA",
-];
+const IsoLogo = () => (
+  <svg viewBox="0 0 200 80" className="h-[75px] md:h-[90px] w-auto drop-shadow-sm max-w-[200px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Box with rounded corners */}
+    <rect x="5" y="5" width="190" height="70" rx="4" stroke="#102f66" strokeWidth="2.5" fill="#ffffff" />
+
+    {/* Large checkmark */}
+    <path d="M-8 45 L15 65 L40 25 L32 20 L15 48 L-2 35 Z" fill="#b0b5be" />
+
+    {/* Text: ISO */}
+    <text x="50" y="42" fontFamily="Arial, sans-serif" fontWeight="bold" fontSize="34" fill="#102f66">ISO</text>
+
+    {/* Small text box for 9001 and 2015 */}
+    <g transform="translate(118, 18)">
+      <text x="0" y="10" fontFamily="Arial, sans-serif" fontWeight="bold" fontSize="12" fill="#102f66">9001</text>
+      <line x1="0" y1="13" x2="32" y2="13" stroke="#102f66" strokeWidth="1" />
+      <text x="0" y="24" fontFamily="Arial, sans-serif" fontWeight="bold" fontSize="11" fill="#102f66">2015</text>
+    </g>
+
+    {/* Vertical divider */}
+    <line x1="110" y1="15" x2="110" y2="45" stroke="#102f66" strokeWidth="1" />
+
+    {/* Text: CERTIFIED */}
+    <text x="45" y="66" fontFamily="Arial, sans-serif" fontWeight="bold" fontSize="18" letterSpacing="1.5" fill="#102f66">CERTIFIED</text>
+  </svg>
+);
+
+const NcsLogo = () => (
+  <svg viewBox="0 0 220 80" className="h-[80px] md:h-[95px] w-auto drop-shadow-sm max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Person element */}
+    <circle cx="110" cy="18" r="4" fill="#f48625" />
+    <path d="M110 24 C 114 24, 117 28, 116 35 C 112 40, 108 40, 104 35 C 103 28, 106 24, 110 24 Z" fill="#f48625" />
+    <path d="M116 28 Q 125 32 128 25" fill="none" stroke="#f48625" strokeWidth="3" strokeLinecap="round" />
+    <path d="M104 28 Q 95 32 92 38" fill="none" stroke="#f48625" strokeWidth="3" strokeLinecap="round" />
+
+    {/* Elliptical Rings */}
+    <ellipse cx="110" cy="45" rx="35" ry="8" fill="none" stroke="#6ca64a" strokeWidth="2.5" />
+    <ellipse cx="110" cy="45" rx="25" ry="5" fill="none" stroke="#115d31" strokeWidth="2" />
+    <ellipse cx="110" cy="45" rx="15" ry="3" fill="none" stroke="#2a8c4c" strokeWidth="1.5" />
+
+    {/* Text: National Career Service */}
+    <text x="110" y="65" fontFamily="Arial, sans-serif" fontWeight="bold" fontSize="14" fill="#2d3748" textAnchor="middle">
+      National Career Service
+    </text>
+
+    {/* Subtext */}
+    <text x="110" y="75" fontFamily="Arial, sans-serif" fontSize="6.5" fill="#718096" textAnchor="middle">
+      सही अवसर, सही समय
+    </text>
+    <text x="110" y="81" fontFamily="Arial, sans-serif" fontStyle="italic" fontSize="5" fill="#718096" textAnchor="middle" letterSpacing="0.2">
+      Right Opportunities, Right Time
+    </text>
+  </svg>
+);
+
 
 const Certifications = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section className="py-20 md:py-24 bg-gradient-to-b from-secondary/20 to-background relative overflow-hidden" ref={ref}>
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--accent)/0.03),transparent_70%)]" />
-      
-      <div className="container mx-auto px-4 lg:px-8 relative">
+    <section className="py-16 md:py-20 bg-white" ref={ref}>
+      <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-center items-center gap-8 md:gap-10 overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex justify-center transition-transform duration-500 ease-in-out hover:scale-[1.03]"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4"
-          >
-            <Award className="w-4 h-4" />
-            Accreditations
-          </motion.div>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Certifications & Accreditations
-          </h2>
-          <p className="font-body text-muted-foreground text-base md:text-lg">
-            Recognized by leading healthcare organizations worldwide.
-          </p>
+          <IsoLogo />
         </motion.div>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-          {certifications.map((cert, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-              transition={{ 
-                duration: 0.5, 
-                delay: i * 0.1,
-                ease: [0.6, -0.05, 0.01, 0.99]
-              }}
-              whileHover={{ scale: 1.05, y: -4 }}
-              className="group relative"
-            >
-              <div className="px-8 py-5 rounded-2xl border-2 border-border/50 bg-card hover:border-accent/50 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 relative overflow-hidden">
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <span className="relative font-heading text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:from-accent group-hover:to-primary transition-all duration-300">
-                  {cert}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
+          className="flex justify-center transition-transform duration-500 ease-in-out hover:scale-[1.03]"
+        >
+          <NcsLogo />
+        </motion.div>
       </div>
     </section>
   );

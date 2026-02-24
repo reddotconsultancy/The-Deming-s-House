@@ -57,18 +57,18 @@ const ScrollToTop = () => {
     <motion.button
       onClick={scrollToTop}
       initial={{ opacity: 0, scale: 0, y: 20 }}
-      animate={{ 
-        opacity: isVisible ? 1 : 0, 
+      animate={{
+        opacity: isVisible ? 1 : 0,
         scale: isVisible ? 1 : 0,
         y: isVisible ? 0 : 20
       }}
-      whileHover={{ scale: 1.1, y: -2 }}
+      whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed bottom-8 right-8 z-40 p-4 bg-gradient-to-r from-primary to-accent text-white rounded-full shadow-xl hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 backdrop-blur-sm border border-white/20"
+      className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-gradient-to-r from-primary to-accent text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
       aria-label="Scroll to top"
     >
-      <ChevronUp size={24} strokeWidth={2.5} />
+      <ChevronUp className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={2.5} />
     </motion.button>
   );
 };

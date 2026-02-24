@@ -1,154 +1,154 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
-
-const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-];
+import { ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show scroll-to-top button when scrolling down
+  useEffect(() => {
+    const toggleVisibility = () => {
+      // Show when scrolled down 300px
+      setIsVisible(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="bg-gradient-to-b from-primary to-primary/95 text-white pt-20 pb-8 relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--accent)/0.1),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,hsl(var(--accent)/0.1),transparent_50%)]" />
-      
-      <div className="container mx-auto px-4 lg:px-8 relative">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
-          {/* Brand */}
+    <footer className="relative bg-[#111111] text-white overflow-hidden selection:bg-accent/40 selection:text-white">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+        <img
+          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=800&fit=crop&q=80"
+          alt="Professional trainer with lanyard"
+          className="w-full h-full object-cover opacity-20 filter grayscale transform scale-105"
+          style={{ objectPosition: "center 20%" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151724] via-black/85 to-black/70 backdrop-blur-[3px]"></div>
+      </div>
+
+      {/* Main Content Area */}
+      <div className="relative z-10 container mx-auto px-6 py-16 sm:py-20 md:py-32 flex flex-col items-center justify-center text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }} // Snappier cubic-bezier
+          viewport={{ once: true, margin: "-50px" }}
+          className="max-w-2xl mx-auto"
+        >
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
+            <div className="h-[1px] w-8 sm:w-12 bg-white/20" />
+            <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold tracking-widest uppercase text-white/90">
+              Contact Us
+            </h3>
+            <div className="h-[1px] w-8 sm:w-12 bg-white/20" />
+          </div>
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            className="space-y-6 font-body text-white/70 text-base md:text-lg"
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            className="md:col-span-2"
+            variants={{
+              visible: { transition: { staggerChildren: 0.1 } },
+              hidden: {}
+            }}
           >
-            <div className="flex items-center gap-3 mb-6">
-              <motion.img 
-                src="/1_page-0001-Photoroom.png" 
-                alt="The Deming's House" 
-                className="h-16 w-auto object-contain"
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              />
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 15 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+              }}
+              className="group cursor-pointer flex flex-col items-center gap-1"
+            >
+              <span className="text-xs tracking-widest uppercase text-white/40 font-semibold">Email</span>
+              <a href="mailto:contact_us@thedemingshouse.com" className="hover:text-white hover:text-accent transition-colors duration-300">
+                contact_us@thedemingshouse.com
+              </a>
+            </motion.div>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 15 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+              }}
+              className="group cursor-pointer flex flex-col items-center gap-1"
+            >
+              <span className="text-xs tracking-widest uppercase text-white/40 font-semibold">Phone</span>
+              <a href="tel:+917039499648" className="hover:text-white hover:text-accent transition-colors duration-300">
+                +91 7039499648
+              </a>
+            </motion.div>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 15 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+              }}
+              className="group flex flex-col items-center gap-1"
+            >
+              <span className="text-xs tracking-widest uppercase text-white/40 font-semibold">Address</span>
+              <p className="text-white/80">
+                A.M. Residency, 101 - D, Mumbai-10
+              </p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="relative z-20 bg-[#1A1C2C] py-5 border-t border-white/5">
+        <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
+
+          {/* Copyright */}
+          <div className="flex items-center gap-2 text-white/50 text-xs sm:text-sm font-body tracking-wide text-center">
+            <span className="text-base text-white/40">©</span>
+            <p>The Deming's House. All rights reserved.</p>
+          </div>
+
+          {/* Right side - Logo + Scroll Button */}
+          <div className="flex items-center gap-8">
+            {/* AcmeFlare Logo text */}
+            <div className="flex flex-col items-end group cursor-pointer">
+              <span className="font-heading font-bold text-xl tracking-tight leading-none text-white/90 group-hover:text-white transition-colors duration-300">
+                acmeflare
+              </span>
+              <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] mt-1.5 group-hover:text-accent transition-colors duration-300">
+                Monetizing Innovations
+              </span>
             </div>
-            <h3 className="font-heading text-2xl font-bold text-white mb-4">The Deming's House</h3>
-            <p className="font-body text-base text-white/80 leading-relaxed mb-6 max-w-md">
-              Empowering non-clinical professionals with world-class healthcare education and certification programs.
-            </p>
-            
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              {socialLinks.map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  aria-label={social.label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-accent backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:shadow-accent/30"
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="font-heading text-lg font-bold mb-6 text-white">Contact Us</h4>
-            <ul className="space-y-4">
-              <motion.li 
-                className="flex items-start gap-3 group cursor-pointer"
-                whileHover={{ x: 4 }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                  <Mail className="w-5 h-5 text-accent" />
-                </div>
-                <div>
-                  <p className="font-body text-sm text-white/60 mb-1">Email</p>
-                  <span className="font-body text-sm text-white">info@thedemingshouse.com</span>
-                </div>
-              </motion.li>
-              <motion.li 
-                className="flex items-start gap-3 group cursor-pointer"
-                whileHover={{ x: 4 }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                  <Phone className="w-5 h-5 text-accent" />
-                </div>
-                <div>
-                  <p className="font-body text-sm text-white/60 mb-1">Phone</p>
-                  <span className="font-body text-sm text-white">+1 (555) 123-4567</span>
-                </div>
-              </motion.li>
-              <motion.li 
-                className="flex items-start gap-3 group cursor-pointer"
-                whileHover={{ x: 4 }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                  <MapPin className="w-5 h-5 text-accent" />
-                </div>
-                <div>
-                  <p className="font-body text-sm text-white/60 mb-1">Location</p>
-                  <span className="font-body text-sm text-white">Healthcare District, Suite 200</span>
-                </div>
-              </motion.li>
-            </ul>
-          </motion.div>
+            {/* Scroll To Top Button */}
+            <motion.button
+              onClick={scrollToTop}
+              initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
+              animate={{
+                opacity: isVisible ? 1 : 0,
+                scale: isVisible ? 1 : 0.5,
+                rotate: isVisible ? 0 : -45
+              }}
+              transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+              whileHover={{
+                y: -4,
+                backgroundColor: "rgba(255,255,255,0.1)",
+                borderColor: "rgba(255,255,255,0.4)"
+              }}
+              whileTap={{ scale: 0.9, y: 0 }}
+              className={`hidden md:flex w-12 h-12 rounded-full border border-white/10 items-center justify-center bg-transparent backdrop-blur-md cursor-pointer transition-colors duration-300 shadow-[0_0_20px_rgba(0,0,0,0.2)] ${!isVisible && 'pointer-events-none'}`}
+              aria-label="Scroll to top"
+            >
+              <ArrowUp className="w-5 h-5 text-white/80" strokeWidth={1.5} />
+            </motion.button>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="font-heading text-lg font-bold mb-6 text-white">Quick Links</h4>
-            <ul className="space-y-3">
-              {["Home", "About", "Services", "Course", "FAQ's"].map((link, i) => (
-                <motion.li key={link} whileHover={{ x: 4 }}>
-                  <a
-                    href={`#${link.toLowerCase().replace("'s", "")}`}
-                    className="font-body text-sm text-white/70 hover:text-accent transition-colors duration-300 inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent/50 group-hover:bg-accent transition-colors" />
-                    {link}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <motion.p 
-            className="font-body text-sm text-white/60"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            © {new Date().getFullYear()} The Deming's House. All rights reserved.
-          </motion.p>
-
-          <motion.div
-            className="flex items-center gap-6 text-sm text-white/60"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <a href="#" className="hover:text-accent transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-accent transition-colors">Terms of Service</a>
-          </motion.div>
         </div>
       </div>
     </footer>

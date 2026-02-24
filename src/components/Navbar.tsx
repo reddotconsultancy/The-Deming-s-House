@@ -17,7 +17,7 @@ export default function Navbar() {
 
   useEffect(() => {
     let ticking = false;
-    
+
     const onScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -32,13 +32,13 @@ export default function Navbar() {
             if (!el) continue;
             const rect = el.getBoundingClientRect();
             const elementTop = rect.top + window.scrollY;
-            
+
             if (scrollPosition >= elementTop) {
               current = sections[i];
               break;
             }
           }
-          
+
           setActiveSection(current);
           ticking = false;
         });
@@ -66,11 +66,10 @@ export default function Navbar() {
         <motion.button
           key={link.href}
           onClick={() => handleClick(link.href)}
-          className={`relative px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
-            active
-              ? "text-white"
-              : "text-foreground/70 hover:text-primary"
-          }`}
+          className={`relative px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${active
+            ? "text-white"
+            : "text-foreground/70 hover:text-primary"
+            }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -92,19 +91,18 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-xl shadow-lg"
-          : "bg-white/80 backdrop-blur-md"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-white/95 backdrop-blur-xl shadow-lg"
+        : "bg-white/80 backdrop-blur-md"
+        }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-0.5 px-4 lg:px-8">
+      <div className="container mx-auto flex items-center justify-between py-2 pl-4 pr-6 sm:px-8 lg:px-12 relative">
 
         {/* Logo */}
         <a href="#home" className="flex items-center justify-center group">
-          <motion.img 
-            src="/1_page-0001-Photoroom.png" 
-            alt="The Deming's House" 
+          <motion.img
+            src="/1_page-0001-Photoroom.png"
+            alt="The Deming's House"
             className="h-16 w-auto md:h-18 lg:h-20 object-contain transition-transform duration-300"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -119,15 +117,17 @@ export default function Navbar() {
           {navButtons}
         </ul>
 
-        {/* Mobile */}
-        <motion.button
-          className="lg:hidden p-2 rounded-lg hover:bg-secondary/50 transition-colors"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {mobileOpen ? <X className="h-6 w-6 text-foreground" /> : <Menu className="h-6 w-6 text-foreground" />}
-        </motion.button>
+        {/* Mobile menu button */}
+        <div className="lg:hidden flex items-center justify-end">
+          <motion.button
+            className="p-2 rounded-lg hover:bg-secondary/50 transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {mobileOpen ? <X className="h-7 w-7 text-foreground" /> : <Menu className="h-7 w-7 text-foreground" />}
+          </motion.button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -150,11 +150,10 @@ export default function Navbar() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: index * 0.1 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`py-3 px-5 rounded-lg font-semibold text-left transition-all duration-200 ${
-                      active
-                        ? "bg-gradient-to-r from-primary to-accent text-white shadow-md"
-                        : "bg-secondary/50 text-foreground hover:bg-secondary hover:shadow-sm"
-                    }`}
+                    className={`py-3 px-5 rounded-lg font-semibold text-left transition-all duration-200 ${active
+                      ? "bg-gradient-to-r from-primary to-accent text-white shadow-md"
+                      : "bg-secondary/50 text-foreground hover:bg-secondary hover:shadow-sm"
+                      }`}
                   >
                     {link.label}
                   </motion.button>

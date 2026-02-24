@@ -38,7 +38,7 @@ const HeroSlider = () => {
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden bg-primary">
-      
+
       {/* Background Image with Ken Burns effect */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -73,28 +73,28 @@ const HeroSlider = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
-              className="max-w-4xl mx-auto text-center"
+              className="max-w-4xl mx-auto text-center px-10 sm:px-14 lg:px-20"
             >
               {/* Headline with stagger effect */}
-              <motion.h1 
-                className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-2xl"
+              <motion.h1
+                className="font-heading text-[2.5rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 drop-shadow-2xl px-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 {slides[current].headline}
               </motion.h1>
-              
+
               {/* Subheading */}
-              <motion.p 
-                className="font-body text-lg md:text-xl lg:text-2xl text-white/95 mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-lg"
+              <motion.p
+                className="font-body text-[15px] sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-lg px-2 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 {slides[current].subheading}
               </motion.p>
-              
+
               {/* CTA Button */}
               <motion.a
                 href="#course"
@@ -103,7 +103,7 @@ const HeroSlider = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-block font-heading font-semibold text-base md:text-lg px-10 py-4 bg-gradient-to-r from-accent to-primary text-white rounded-full hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 shadow-xl"
+                className="inline-block font-heading font-semibold text-sm sm:text-base md:text-lg px-8 sm:px-10 py-3 md:py-4 bg-gradient-to-r from-primary to-accent text-white rounded-full hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 shadow-xl"
               >
                 {slides[current].cta}
               </motion.a>
@@ -117,7 +117,7 @@ const HeroSlider = () => {
         onClick={prev}
         whileHover={{ scale: 1.1, x: -4 }}
         whileTap={{ scale: 0.95 }}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 text-white transition-all duration-300 border border-white/30"
+        className="hidden md:flex items-center justify-center absolute left-4 sm:left-8 md:left-12 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 text-white transition-all duration-300 border border-white/30"
         aria-label="Previous slide"
       >
         <ChevronLeft size={28} strokeWidth={2.5} />
@@ -126,7 +126,7 @@ const HeroSlider = () => {
         onClick={next}
         whileHover={{ scale: 1.1, x: 4 }}
         whileTap={{ scale: 0.95 }}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 text-white transition-all duration-300 border border-white/30"
+        className="hidden md:flex items-center justify-center absolute right-4 sm:right-8 md:right-12 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/30 text-white transition-all duration-300 border border-white/30"
         aria-label="Next slide"
       >
         <ChevronRight size={28} strokeWidth={2.5} />
@@ -140,11 +140,10 @@ const HeroSlider = () => {
             onClick={() => setCurrent(i)}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
-            className={`h-2 rounded-full transition-all duration-500 ${
-              i === current 
-                ? "bg-white w-10 shadow-lg shadow-white/50" 
-                : "bg-white/50 w-2 hover:bg-white/70"
-            }`}
+            className={`h-2 rounded-full transition-all duration-500 ${i === current
+              ? "bg-white w-10 shadow-lg shadow-white/50"
+              : "bg-white/50 w-2 hover:bg-white/70"
+              }`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
