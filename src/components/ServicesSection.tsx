@@ -1,27 +1,28 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Heart, BookOpen, Users, Award } from "lucide-react";
+import { GraduationCap, Globe, Megaphone } from "lucide-react";
 
 const services = [
   {
-    icon: Heart,
-    title: "Healthcare Fundamentals",
-    description: "Master the core principles of healthcare management, compliance, and patient care coordination.",
+    number: "01",
+    icon: GraduationCap,
+    title: "Skill Development",
+    description: "Practical, industry-focused courses designed to help healthcare professionals develop skills beyond their clinical qualifications.",
+    href: "#courses",
   },
   {
-    icon: BookOpen,
-    title: "Professional Certification",
-    description: "Earn industry-recognized certifications that open doors to rewarding healthcare careers.",
+    number: "02",
+    icon: Globe,
+    title: "International Licensing",
+    description: "Professional licensing guidance for doctors, nurses and allied healthcare professionals seeking opportunities across the UAE and GCC.",
+    href: "#licensing",
   },
   {
-    icon: Users,
-    title: "Mentorship Programs",
-    description: "Connect with experienced healthcare leaders who guide your professional development journey.",
-  },
-  {
-    icon: Award,
-    title: "Continuing Education",
-    description: "Stay current with evolving healthcare standards through our advanced training modules.",
+    number: "03",
+    icon: Megaphone,
+    title: "Healthcare Professional Marketing",
+    description: "Personal branding and professional visibility strategies designed specifically for healthcare professionals and healthcare businesses.",
+    href: "#marketing",
   },
 ];
 
@@ -48,20 +49,21 @@ const ServicesSection = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Our Services
+            What We Do
           </motion.span>
           <h2 className="font-heading text-[1.75rem] leading-[1.25] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 px-2">
-            Comprehensive Healthcare Solutions
+            Three Core Areas
           </h2>
           <p className="font-body text-muted-foreground max-w-2xl mx-auto text-[15px] sm:text-base md:text-lg px-2">
-            Tailored education programs for aspiring and current non-clinical professionals.
+            One platform for skill development, international licensing and healthcare professional marketing.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 px-2 sm:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 px-2 sm:px-0">
           {services.map((service, i) => (
-            <motion.div
+            <motion.a
               key={i}
+              href={service.href}
               initial={{ opacity: 0, y: 50, scale: 0.95 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{
@@ -70,10 +72,15 @@ const ServicesSection = () => {
                 ease: [0.6, -0.05, 0.01, 0.99]
               }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative bg-card rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:shadow-accent/10 border border-border/50 hover:border-accent/50 transition-all duration-500 overflow-hidden"
+              className="group relative bg-card rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:shadow-accent/10 border border-border/50 hover:border-accent/50 transition-all duration-500 overflow-hidden block"
             >
               {/* Gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Number watermark */}
+              <span className="absolute top-5 right-6 font-heading text-4xl font-bold text-foreground/5 group-hover:text-accent/15 transition-colors duration-500">
+                {service.number}
+              </span>
 
               <motion.div
                 className="relative"
@@ -93,7 +100,7 @@ const ServicesSection = () => {
                   {service.description}
                 </p>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

@@ -3,11 +3,11 @@ import { useRef } from "react";
 import { Check } from "lucide-react";
 
 const checklistItems = [
-  "High-tech innovative training programs.",
-  "Flexible learning options tailored to your needs.",
-  "Expert-led and approved courses.",
-  "Comprehensive focus on medical tourism and healthcare marketing.",
-  "Specialized training in healthcare insurance processes.",
+  "Skill development built around real healthcare environments.",
+  "International licensing guidance for the UAE and GCC.",
+  "Healthcare professional branding and visibility strategy.",
+  "Guidance matched to each professional's background and goals.",
+  "A focus on measurable outcomes over volume.",
 ];
 
 const AboutSection = () => {
@@ -23,7 +23,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-6 md:px-8 lg:px-12">
         <div className="flex flex-col md:flex-row gap-10 lg:gap-14 items-center md:items-stretch">
 
-          {/* ── Far-left: vertical "4 years of excellence" text ── */}
+          {/* ── Far-left: vertical label ── */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -34,7 +34,7 @@ const AboutSection = () => {
               className="text-xs font-semibold tracking-[0.3em] uppercase text-foreground/40 whitespace-nowrap"
               style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
             >
-              4 years of excellence
+              Learn · Navigate · Build · Grow
             </span>
           </motion.div>
 
@@ -87,7 +87,7 @@ const AboutSection = () => {
               className="flex items-center gap-3 mb-4"
             >
               <span className="font-semibold text-sm tracking-widest uppercase text-foreground/70">
-                About Us
+                About The Deming's House
               </span>
               <div className="h-px w-12 bg-foreground/40" />
             </motion.div>
@@ -99,7 +99,7 @@ const AboutSection = () => {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="font-heading text-[1.75rem] leading-[1.25] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 md:mb-6 pr-2"
             >
-              Transforming Healthcare Through Non-Clinical Excellence
+              A Healthcare Professional Development & Services Platform
             </motion.h2>
 
             {/* Paragraphs */}
@@ -110,13 +110,13 @@ const AboutSection = () => {
               transition={{ duration: 0.7, delay: 0.5 }}
             >
               <p className="font-body text-[15px] sm:text-base text-foreground/65 leading-relaxed">
-                The Deming's House was founded in 2020 to address the growing need for well-trained non-clinical professionals in healthcare. Our mission is to ensure every patient feels safe and cared for through education and awareness.
+                The Deming's House is a healthcare-focused professional development and services platform designed to help healthcare professionals learn, advance, navigate international opportunities and build professional visibility.
               </p>
               <p className="font-body text-[15px] sm:text-base text-foreground/65 leading-relaxed">
-                We specialize in providing tailored training programs for aspiring and current non-clinical healthcare professionals. By focusing on critical areas such as patient safety, healthcare marketing, medical tourism, and insurance processes, we aim to elevate the standards of non-clinical healthcare roles globally.
+                Our approach is built around three core areas: skill development, international licensing, and healthcare professional marketing.
               </p>
               <p className="font-body text-[15px] sm:text-base text-foreground/65 leading-relaxed">
-                Our first official course, launched in 2024, is designed for both fresh graduates and professionals looking to upgrade their skills. With a robust curriculum and a commitment to practical learning, The Deming's House ensures participants are well-prepared to thrive in the dynamic healthcare industry.
+                Our philosophy is simple. We don't believe in mass. We believe in the right guidance, the right strategy, quality execution and measurable outcomes.
               </p>
             </motion.div>
 

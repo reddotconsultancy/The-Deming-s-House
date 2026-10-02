@@ -4,11 +4,13 @@ import ScrollToTop from "@/components/ScrollToTop";
 import HeroSlider from "@/components/HeroSlider";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
-import WhyChooseUs from "@/components/WhyChooseUs";
 import CourseDetails from "@/components/CourseDetails";
+import LicensingSection from "@/components/LicensingSection";
+import MarketingSection from "@/components/MarketingSection";
+import TeamSection from "@/components/TeamSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import FounderQuote from "@/components/FounderQuote";
-import FAQSection from "@/components/FAQSection";
-import Certifications from "@/components/Certifications";
+import PromiseSection from "@/components/PromiseSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -21,11 +23,13 @@ const Index = () => {
         <HeroSlider />
         <AboutSection />
         <ServicesSection />
-        <WhyChooseUs />
         <CourseDetails />
+        <LicensingSection />
+        <MarketingSection />
+        <TeamSection />
+        <WhyChooseUs />
         <FounderQuote />
-        <FAQSection />
-        <Certifications />
+        <PromiseSection />
       </main>
       <Footer />
       <ScrollToTop />

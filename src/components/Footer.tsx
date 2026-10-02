@@ -44,6 +44,13 @@ const Footer = () => {
           viewport={{ once: true, margin: "-50px" }}
           className="max-w-2xl mx-auto"
         >
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-2">
+            The Deming's House
+          </h2>
+          <p className="font-body text-xs sm:text-sm tracking-[0.25em] uppercase text-white/50 mb-8 sm:mb-10">
+            Healthcare • Aesthetics • Professional Growth
+          </p>
+
           <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
             <div className="h-[1px] w-8 sm:w-12 bg-white/20" />
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold tracking-widest uppercase text-white/90">

@@ -1,16 +1,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Shield, Clock, Globe, TrendingUp, Target, Lightbulb, Zap, Star } from "lucide-react";
+import { Gem, Workflow, Target, LineChart, UserCheck } from "lucide-react";
 
 const reasons = [
-  { icon: Shield, title: "ISO Certified", description: "Internationally recognized quality standards in all our programs." },
-  { icon: Clock, title: "Flexible Learning", description: "Study at your own pace with our adaptable course schedules." },
-  { icon: Globe, title: "Global Recognition", description: "Credentials valued by employers across the healthcare industry." },
-  { icon: TrendingUp, title: "Career Growth", description: "Clear pathways to advancement in healthcare management." },
-  { icon: Target, title: "Practical Focus", description: "Real-world case studies and hands-on training modules." },
-  { icon: Lightbulb, title: "Expert Faculty", description: "Learn from professionals with decades of clinical experience." },
-  { icon: Zap, title: "Fast-Track Programs", description: "Accelerated courses designed for working professionals." },
-  { icon: Star, title: "Placement Support", description: "Dedicated career services to help you land your ideal role." },
+  { icon: Gem, title: "Quality", description: "Providing thoughtful and professional guidance." },
+  { icon: Workflow, title: "Efficiency", description: "Creating clear and structured processes." },
+  { icon: Target, title: "Accuracy", description: "Understanding the individual's requirements before recommending a pathway." },
+  { icon: LineChart, title: "Results", description: "Focusing on meaningful outcomes rather than volume." },
+  { icon: UserCheck, title: "Personalised Guidance", description: "Every professional comes with a different qualification, experience, ambition and career objective, so the approach is not one-size-fits-all." },
 ];
 
 const WhyChooseUs = () => {
@@ -18,7 +15,7 @@ const WhyChooseUs = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="why-choose-us" className="py-16 md:py-20 lg:py-28 bg-gradient-to-b from-background to-secondary/30 relative overflow-hidden" ref={ref}>
+    <section id="approach" className="py-16 md:py-20 lg:py-28 bg-gradient-to-b from-background to-secondary/30 relative overflow-hidden" ref={ref}>
       {/* Decorative background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--accent)/0.05),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(var(--primary)/0.05),transparent_50%)]" />
@@ -36,17 +33,17 @@ const WhyChooseUs = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Why Choose Us
+            Our Approach
           </motion.span>
           <h2 className="font-heading text-[1.75rem] leading-[1.25] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 px-2">
-            What Sets Us Apart
+            Quality Over Quantity
           </h2>
           <p className="font-body text-muted-foreground max-w-2xl mx-auto text-[15px] sm:text-base md:text-lg px-2">
-            Discover what makes The Deming's House a leader in healthcare education.
+            The Deming's House is not built around a mass-market model. Success is not measured by the number of students, clients or applications handled.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 px-2 sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 px-2 sm:px-0">
           {reasons.map((reason, i) => (
             <motion.div
               key={i}

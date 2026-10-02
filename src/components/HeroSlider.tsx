@@ -4,22 +4,25 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    headline: "Transforming Healthcare Education",
-    subheading: "Empowering non-clinical professionals with world-class healthcare training and certification programs.",
-    cta: "Explore Our Courses",
+    headline: "Healthcare Professional Development, Licensing & Marketing",
+    subheading: "The Deming's House helps healthcare professionals learn, advance, navigate international opportunities and build professional visibility.",
+    cta: "Explore Our Programs",
+    href: "#courses",
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&h=1080&fit=crop&auto=format&q=80"
   },
   {
-    headline: "Learn From Industry Experts",
-    subheading: "Gain practical skills from seasoned healthcare professionals with decades of real-world experience.",
-    cta: "Get Started Today",
-    image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1920&h=1080&fit=crop&auto=format&q=80"
+    headline: "International Healthcare Licensing",
+    subheading: "Licensing guidance for doctors, nurses and allied healthcare professionals seeking opportunities across the UAE and GCC.",
+    cta: "View Licensing",
+    href: "#licensing",
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=1920&h=1080&fit=crop&auto=format&q=80"
   },
   {
-    headline: "Your Career in Healthcare Starts Here",
-    subheading: "ISO-certified programs designed to fast-track your journey into the healthcare industry.",
-    cta: "Discover More",
-    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=1920&h=1080&fit=crop&auto=format&q=80"
+    headline: "Healthcare Professional Marketing",
+    subheading: "Personal branding and professional visibility strategy built for healthcare professionals and healthcare businesses.",
+    cta: "Explore Marketing",
+    href: "#marketing",
+    image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1920&h=1080&fit=crop&auto=format&q=80"
   },
 ];
 
@@ -97,7 +100,7 @@ const HeroSlider = () => {
 
               {/* CTA Button */}
               <motion.a
-                href="#course"
+                href={slides[current].href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}

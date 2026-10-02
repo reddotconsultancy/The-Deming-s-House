@@ -39,11 +39,10 @@ const FounderQuote = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.35 }}
               >
-                In today's healthcare landscape, patient care goes beyond doctors and nurses, starting the moment
-                patients enter a facility. Every touchpoint is vital to enhancing their experience and promoting
-                long-term health and satisfaction. At The Deming's House, we prepare our alumni for non-clinical
-                roles, equipping them with the skills and empathy to transform patient care through excellence
-                and compassion.
+                For healthcare professionals, branding is not simply about gaining attention. It is about
+                credibility, visibility, trust, professional positioning, patient connection and long-term
+                presence. My focus is on helping healthcare professionals and healthcare businesses build
+                brands that are strategic, credible and relevant to the healthcare environment.
               </motion.p>
 
               {/* Divider line & Attribution */}
